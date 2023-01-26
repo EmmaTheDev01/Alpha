@@ -57,11 +57,10 @@ if (strlen($_SESSION['login']) == 0) {
     <body>
 
 
-
+       
         <section class="page-header profile_page">
             <div class="container">
-
-
+            
         </section>
 
 
@@ -75,6 +74,9 @@ if (strlen($_SESSION['login']) == 0) {
         $cnt = 1;
         if ($query->rowCount() > 0) {
             foreach ($results as $result) { ?>
+
+            <button class="print-btn" id="print" onclick="download()">Print</button>
+
                 <section class="printable">
                     <div class="all-detailss">
                         <div class="user_profile_info">
@@ -82,10 +84,10 @@ if (strlen($_SESSION['login']) == 0) {
                             </div>
                             <div class="company">
                                 <h5>Alpha Express Rwanda</h5>
-                                <p class="contact-info-ticket">alphaexpress@alpha.rw</p>
-                                <p class="contact-info-ticket">+25078888888</p>
-                                <p class="contact-info-ticket">Kigali - Rwanda</p>
-                                <p class="contact-info-ticket">Nyabugogo bus station</p>
+                                <p class="contact-info-ticket">alphaexpress@alpha.rw, &nbsp; +25078888888</p>
+                                
+                                <p class="contact-info-ticket">Kigali - Rwanda, &nbsp; Nyabugogo bus station</p>
+                                
                             </div>
 
                             <p>******************************************************</p>
@@ -97,16 +99,18 @@ if (strlen($_SESSION['login']) == 0) {
                                     Name:<b>
                                         <?php echo htmlentities($result->FullName); ?>
                                     </b><br>
+                                    Country: 
+                                    <?php echo htmlentities($result->Country); ?><br>
                                     Email:
-                                    <?php echo htmlentities($result->EmailId); ?><br>
+                                    <?php echo htmlentities($result->EmailId); ?>, &nbsp;
                                     Phone:
                                     <?php echo htmlentities($result->ContactNo); ?><br>
                                     Address:
-                                    <?php echo htmlentities($result->Address); ?><br>
+                                    <?php echo htmlentities($result->Address); ?>, &nbsp;
                                     City:
-                                    <?php echo htmlentities($result->City); ?><br>
-                                    Country:
-                                    <?php echo htmlentities($result->Country);
+                                    <?php echo htmlentities($result->City); 
+                                    
+                                  
             }
         } ?>
                         </p>
@@ -129,7 +133,7 @@ if (strlen($_SESSION['login']) == 0) {
                                     <p>******************************************************</p>
                                     <div class="vehicle_title">
                                         <p>
-                                            Order Id: 000<?php echo htmlentities($result->id); ?>
+                                            Order Id: 000<?php echo htmlentities($result->id); ?><br>
                                             Booked Car:
                                             <b>
                                                 <?php echo htmlentities($result->VehiclesTitle); ?>
@@ -145,11 +149,13 @@ if (strlen($_SESSION['login']) == 0) {
                                                 <?php echo htmlentities($result->PricePerDay); ?>RWF
                                             </b><br>
                                             From:</i>
-                                            <?php echo htmlentities($result->FromDate); ?> <br />
-                                            To Date:
-                                            <?php echo htmlentities($result->ToDate); ?><br>
+                                            <?php echo htmlentities($result->FromDate); ?><br>
+                                            To:
+                                            <?php echo htmlentities($result->ToDate); ?>,&nbsp;
                                             Ticket Status: <u class="text-success">Confirmed</u>
                                         </p>
+                                        <p>Thank you for doing business with Alpha express, Safe journey!</p>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -157,10 +163,7 @@ if (strlen($_SESSION['login']) == 0) {
                     </section>
                 <?php } else {
                                     ?>
-                    <p class="text-danger ticket-heading ">******************************************************</p>
-                    <p class="text-danger ticket-heading">Another order not approved</P>
-                    <p class="text-danger ticket-heading">******************************************************</p>
-
+                   
                 <?php } ?>
 
             <?php }
@@ -168,6 +171,16 @@ if (strlen($_SESSION['login']) == 0) {
 
         </section>
         <!-- Scripts -->
+        <script>
+            const printBtn = document.querySelector('#print');
+            const section = document.querySelector('.user_profile_info');
+            function download(){
+                printBtn.addEventListener('click', function(){
+                    window.print();
+                })
+            }
+
+        </script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/interface.js"></script>
