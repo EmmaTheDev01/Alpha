@@ -54,9 +54,9 @@ if (strlen($_SESSION['login']) == 0) {
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-                    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
+                      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+              <![endif]-->
   </head>
 
   <body>
@@ -114,10 +114,10 @@ if (strlen($_SESSION['login']) == 0) {
                           admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1); ?>" alt="image"></a> </div>
                       <div class="vehicle_title">
                         <h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->vid); ?>""> <?php echo htmlentities($result->BrandName); ?> , <?php echo htmlentities($result->VehiclesTitle); ?></a></h6>
-                                                      <p><b>From:</b> <?php echo htmlentities($result->FromDate); ?><br /> <b>To Date:</b> <?php echo htmlentities($result->ToDate); ?></p>
-                                                    </div>
-                                                    <?php if ($result->Status == 1) { ?>
-                                                                <div class=" vehicle_status"> <a href="#"
+                                                            <p><b>From:</b> <?php echo htmlentities($result->FromDate); ?><br /> <b>To Date:</b> <?php echo htmlentities($result->ToDate); ?></p>
+                                                          </div>
+                                                          <?php if ($result->Status == 1) { ?>
+                                                                        <div class=" vehicle_status"> <a href="#"
                                 class="btn active-btn">Confirmed</a>
                               <div class="clearfix"></div>
                         </div>
@@ -228,13 +228,16 @@ if (strlen($_SESSION['login']) == 0) {
                       <p>******************************************************</p>
                       <div class="vehicle_title">
                         <p>
-                          Order Id: 000<?php echo htmlentities($result->id); ?><br>
+                          Order Id: 000
+                          <?php echo htmlentities($result->id); ?><br>
                           Booked Car:
                           <?php echo htmlentities($result->VehiclesTitle); ?><br>
                           Journey: <b>
                             <?php echo htmlentities($result->BrandName); ?>
                           </b><br>
-                          Price: <b><?php echo htmlentities($result->PricePerDay); ?>RWF</b><br>
+                          Price: <b>
+                            <?php echo htmlentities($result->PricePerDay); ?>RWF
+                          </b><br>
                           Booking date:
                           <?php echo htmlentities($result->PostingDate); ?><br>
                           In use at:</i>
@@ -246,27 +249,28 @@ if (strlen($_SESSION['login']) == 0) {
                         <a href="print.php" target="_blank"><button id="print" class="btn">Print</button></a>
                       </div>
 
-                      </div>
-            </div>
-
-          </div>
-        </section>
-
-                    <?php } elseif ($result->Status == 0) {
+                    </div>
+                  </div>
+                </div>
+                <?php } elseif ($result->Status == 0) {
                       ?>
-                      <p class="text-danger ticket-heading">******************************************************</p>
-                      <p class="text-danger ticket-heading">Another ticket not approved yet</P>
-                      <p class="text-danger ticket-heading">******************************************************</p>
-                    <?php } else {
+              <p class="text-danger ticket-heading">******************************************************</p>
+              <p class="text-danger ticket-heading">Another ticket not approved yet</P>
+              <p class="text-danger ticket-heading">******************************************************</p>
+            <?php } else {
                       ?>
 
-                    
 
-                    <?php } ?>
 
-                  <?php }
+            <?php } ?>
+
+          <?php }
                 } ?>
-              
+                
+              </section>
+
+           
+
     </section>
     <!--/my-vehicles-->
     <?php include('includes/footer.php'); ?>
