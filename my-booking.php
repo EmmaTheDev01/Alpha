@@ -54,15 +54,15 @@ if (strlen($_SESSION['login']) == 0) {
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-                      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-              <![endif]-->
+                            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                    <![endif]-->
   </head>
 
   <body>
 
     <!-- Start Switcher -->
-    <?php include('includes/colorswitcher.php'); ?>
+  
     <!-- /Switcher -->
 
     <!--Header-->
@@ -114,23 +114,23 @@ if (strlen($_SESSION['login']) == 0) {
                           admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1); ?>" alt="image"></a> </div>
                       <div class="vehicle_title">
                         <h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->vid); ?>""> <?php echo htmlentities($result->BrandName); ?> , <?php echo htmlentities($result->VehiclesTitle); ?></a></h6>
-                                                            <p><b>From:</b> <?php echo htmlentities($result->FromDate); ?><br /> <b>To Date:</b> <?php echo htmlentities($result->ToDate); ?></p>
-                                                          </div>
-                                                          <?php if ($result->Status == 1) { ?>
-                                                                        <div class=" vehicle_status"> <a href="#"
-                                class="btn active-btn">Confirmed</a>
+                                                                              <p><b>From:</b> <?php echo htmlentities($result->FromDate); ?><br /> <b>To Date:</b> <?php echo htmlentities($result->ToDate); ?></p>
+                                                                            </div>
+                                                                            <?php if ($result->Status == 1) { ?>
+                                                                                                <div class=" vehicle_status">
+                              <p class="text-success bg-success">Confirmed</p>
                               <div class="clearfix"></div>
                         </div>
 
                       <?php } else if ($result->Status == 2) { ?>
-                          <div class="vehicle_status"> <a href="#" class="btn btn-danger  btn-xs">Cancelled</a>
+                          <div class="vehicle_status"> <p class="text-danger bg-danger">Cancelled</p>
                             <div class="clearfix"></div>
                           </div>
 
 
 
                       <?php } else { ?>
-                          <div class="vehicle_status"> <a href="#" class="btn btn-danger btn-xs">Pending</a>
+                          <div class="vehicle_status"> <p class="text-warning bg-warning">Pending</p>
                             <div class="clearfix"></div>
                           </div>
                       <?php } ?>
@@ -152,16 +152,8 @@ if (strlen($_SESSION['login']) == 0) {
     </div>
     </section>
 
-
     <section class="ticket-print">
       <div class="container">
-
-        <h3>Ticket details for approved ticket</h3>
-        <section class="page-header profile_page">
-          <div class="container">
-
-
-        </section>
 
 
         <?php
@@ -174,102 +166,55 @@ if (strlen($_SESSION['login']) == 0) {
         $cnt = 1;
         if ($query->rowCount() > 0) {
           foreach ($results as $result) { ?>
-            <section class="ticket-dets">
-              <div class="container">
-                <div class="user_profile_info">
-                  <div class="company-logo"> <img src="assets/images/logo.png" alt="image" height="80px">
-                  </div>
-                  <div class="company">
-                    <h5>Alpha Express Rwanda</h5>
-                    <p class="contact-info-ticket">alphaexpress@alpha.rw</p>
-                    <p class="contact-info-ticket">+25078888888</p>
-                    <p class="contact-info-ticket">Kigali - Rwanda</p>
-                    <p class="contact-info-ticket">Nyabugogo bus station</p>
-                  </div>
 
-                  <p>******************************************************</p>
-                  <p class="ticket-heading">Customer details</P>
-                  <p>******************************************************</p>
 
-                  <div class="user-info">
-                    <p>
-                      Name:<b>
-                        <?php echo htmlentities($result->FullName); ?>
-                      </b><br>
-                      Email:
-                      <?php echo htmlentities($result->EmailId); ?><br>
-                      Phone:
-                      <?php echo htmlentities($result->ContactNo); ?><br>
-                      Address:
-                      <?php echo htmlentities($result->Address); ?><br>
-                      City:
-                      <?php echo htmlentities($result->City); ?><br>
-                      Country:
-                      <?php echo htmlentities($result->Country);
+
+            <?php
           }
         } ?>
-                </p>
-                <?php
-                $useremail = $_SESSION['login'];
-                $sql = "SELECT tblvehicles.Vimage1 as Vimage1,tblvehicles.VehiclesTitle,tblvehicles.PricePerDay, tblvehicles.id as vid,tblbrands.BrandName,tblbooking.id,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.Status,tblbooking.PostingDate  from tblbooking join tblvehicles on tblbooking.VehicleId=tblvehicles.id join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblbooking.userEmail=:useremail";
-                $query = $dbh->prepare($sql);
-                $query->bindParam(':useremail', $useremail, PDO::PARAM_STR);
-                $query->execute();
-                $results = $query->fetchAll(PDO::FETCH_OBJ);
-                $cnt = 1;
-                if ($query->rowCount() > 0) {
-                  foreach ($results as $result) { ?>
+
+        <?php
+        $useremail = $_SESSION['login'];
+        $sql = "SELECT tblvehicles.Vimage1 as Vimage1,tblvehicles.VehiclesTitle,tblvehicles.PricePerDay, tblvehicles.id as vid,tblbrands.BrandName,tblbooking.id,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.Status,tblbooking.PostingDate  from tblbooking join tblvehicles on tblbooking.VehicleId=tblvehicles.id join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblbooking.userEmail=:useremail";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':useremail', $useremail, PDO::PARAM_STR);
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
+        $cnt = 1;
+        if ($query->rowCount() > 0) {
+          foreach ($results as $result) { ?>
 
 
 
-                    <?php if ($result->Status == 1) { ?>
-                      <p>******************************************************</p>
-                      <p class="ticket-heading">Tickect details</P>
-                      <p>******************************************************</p>
-                      <div class="vehicle_title">
-                        <p>
-                          Order Id: 000
-                          <?php echo htmlentities($result->id); ?><br>
-                          Booked Car:
-                          <?php echo htmlentities($result->VehiclesTitle); ?><br>
-                          Journey: <b>
-                            <?php echo htmlentities($result->BrandName); ?>
-                          </b><br>
-                          Price: <b>
-                            <?php echo htmlentities($result->PricePerDay); ?>RWF
-                          </b><br>
-                          Booking date:
-                          <?php echo htmlentities($result->PostingDate); ?><br>
-                          In use at:</i>
-                          <?php echo htmlentities($result->FromDate); ?> <br />
-                          To Date:
-                          <?php echo htmlentities($result->ToDate); ?><br>
-                          Ticket Status: <u>Confirmed</u>
-                        </p>
-                        <a href="print.php" target="_blank"><button id="print" class="btn">Print</button></a>
-                      </div>
+            <?php if ($result->Status == 1) { ?>
+              <h3>Order Id: <?php echo htmlentities($result->id); ?> details</h3>
+              <p>Print your confirmed order only by clicking the button.</p>
+              <a href="print.php" target="_blank"><button id="print" class="btn">Print</button></a>
 
-                    </div>
-                  </div>
-                </div>
-                <?php } elseif ($result->Status == 0) {
-                      ?>
-              <p class="text-danger ticket-heading">******************************************************</p>
-              <p class="text-danger ticket-heading">Another ticket not approved yet</P>
-              <p class="text-danger ticket-heading">******************************************************</p>
-            <?php } else {
-                      ?>
+            </div>
+
+            </div>
+            </div>
+
+          <?php } elseif ($result->Status == 0) {
+              ?>
+
+            <h3 class="text-danger">Your Order id: ### not approved</h3>
+            <p class="text-notifc">You should wait for an approval in order to get your order details and reciept.</p>
+
+          <?php } else {
+              ?>
 
 
 
-            <?php } ?>
+          <?php } ?>
 
-          <?php }
-                } ?>
-                
-              </section>
+        <?php }
+        } ?>
 
-           
+
+
+
 
     </section>
     <!--/my-vehicles-->
@@ -279,8 +224,6 @@ if (strlen($_SESSION['login']) == 0) {
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/interface.js"></script>
-    <!--Switcher-->
-    <script src="assets/switcher/js/switcher.js"></script>
     <!--bootstrap-slider-JS-->
     <script src="assets/js/bootstrap-slider.min.js"></script>
     <!--Slider-JS-->

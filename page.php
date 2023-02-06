@@ -12,7 +12,7 @@ include('includes/config.php');
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>Alpha Epxress || Online ticket booking system.</title>
+<title>Alpha Epxress, Online ticket booking system.</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -45,10 +45,7 @@ include('includes/config.php');
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 </head>
 <body>
-<!-- Start Switcher -->
-<?php include('includes/colorswitcher.php');?>
-<!-- /Switcher -->  
-        
+     
 <!--Header-->
 <?php include('includes/header.php');?>
                       <?php 
@@ -120,9 +117,6 @@ foreach($results as $result)
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/interface.js"></script> 
-<!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
-<!--bootstrap-slider-JS--> 
 <script src="assets/js/bootstrap-slider.min.js"></script> 
 <!--Slider-JS--> 
 <script src="assets/js/slick.min.js"></script> 

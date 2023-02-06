@@ -56,14 +56,6 @@ if (strlen($_SESSION['login']) == 0) {
 
     <body>
 
-
-       
-        <section class="page-header profile_page">
-            <div class="container">
-            
-        </section>
-
-
         <?php
         $useremail = $_SESSION['login'];
         $sql = "SELECT * from tblusers where EmailId=:useremail";
@@ -75,19 +67,19 @@ if (strlen($_SESSION['login']) == 0) {
         if ($query->rowCount() > 0) {
             foreach ($results as $result) { ?>
 
-            <button class="print-btn" id="print" onclick="download()">Print</button>
+                <button class="print-btn" id="print" onclick="download()">Print</button>
 
                 <section class="printable">
-                    <div class="all-detailss">
+                    <div class="all-details">
                         <div class="user_profile_info">
                             <div class="company-logo"> <img src="assets/images/logo.png" alt="image" height="80px">
                             </div>
                             <div class="company">
                                 <h5>Alpha Express Rwanda</h5>
                                 <p class="contact-info-ticket">alphaexpress@alpha.rw, &nbsp; +25078888888</p>
-                                
+
                                 <p class="contact-info-ticket">Kigali - Rwanda, &nbsp; Nyabugogo bus station</p>
-                                
+
                             </div>
 
                             <p>******************************************************</p>
@@ -99,7 +91,7 @@ if (strlen($_SESSION['login']) == 0) {
                                     Name:<b>
                                         <?php echo htmlentities($result->FullName); ?>
                                     </b><br>
-                                    Country: 
+                                    Country:
                                     <?php echo htmlentities($result->Country); ?><br>
                                     Email:
                                     <?php echo htmlentities($result->EmailId); ?>, &nbsp;
@@ -108,9 +100,9 @@ if (strlen($_SESSION['login']) == 0) {
                                     Address:
                                     <?php echo htmlentities($result->Address); ?>, &nbsp;
                                     City:
-                                    <?php echo htmlentities($result->City); 
-                                    
-                                  
+                                    <?php echo htmlentities($result->City);
+
+
             }
         } ?>
                         </p>
@@ -133,7 +125,8 @@ if (strlen($_SESSION['login']) == 0) {
                                     <p>******************************************************</p>
                                     <div class="vehicle_title">
                                         <p>
-                                            Order Id: 000<?php echo htmlentities($result->id); ?><br>
+                                            Order Id: 000
+                                            <?php echo htmlentities($result->id); ?><br>
                                             Booked Car:
                                             <b>
                                                 <?php echo htmlentities($result->VehiclesTitle); ?>
@@ -155,16 +148,24 @@ if (strlen($_SESSION['login']) == 0) {
                                             Ticket Status: <u class="text-success">Confirmed</u>
                                         </p>
                                         <p>Thank you for doing business with Alpha express, Safe journey!</p>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
+                <?php } elseif ($result->Status == 0) {
+                                    ?>
+
+                    <h5 class="text-danger">Your Order not approved</h5>
+
                 <?php } else {
                                     ?>
-                   
+
+
+
                 <?php } ?>
+
 
             <?php }
                         } ?>
@@ -174,8 +175,8 @@ if (strlen($_SESSION['login']) == 0) {
         <script>
             const printBtn = document.querySelector('#print');
             const section = document.querySelector('.user_profile_info');
-            function download(){
-                printBtn.addEventListener('click', function(){
+            function download() {
+                printBtn.addEventListener('click', function () {
                     window.print();
                 })
             }
@@ -184,9 +185,6 @@ if (strlen($_SESSION['login']) == 0) {
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/interface.js"></script>
-        <!--Switcher-->
-        <script src="assets/switcher/js/switcher.js"></script>
-        <!--bootstrap-slider-JS-->
         <script src="assets/js/bootstrap-slider.min.js"></script>
         <!--Slider-JS-->
         <script src="assets/js/slick.min.js"></script>

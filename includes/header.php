@@ -10,7 +10,7 @@
             <div class="header_widgets">
               <?php if (strlen($_SESSION['login']) == 0) {
               ?>
-                <div class="login_btn"> <a href="#loginform" class=" btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div>
+                <div class="login_btn"> <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div>
               <?php } else {
 
                 echo "Welcome to Alpha Express Online ticket booking system";
@@ -74,7 +74,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
-            <li><a href="index.php" style="{color:black;}">Home</a> </li>
+            <li><a href="index.php"">Home</a> </li>
 
             <li><a href="page.php?type=aboutus" class="nav-menu">About Us</a></li>
             <li><a href="car-listing.php" class="nav-menu">Booking</a>

@@ -23,13 +23,6 @@ error_reporting(0);
 <link href="index.css" rel="stylesheet">
 <link href="assets/css/bootstrap-slider.min.css" rel="stylesheet">
 <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-		<link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" data-default-color="true" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/orange.css" title="orange" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/blue.css" title="blue" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/apple-touch-icon-72-precomposed.png">
@@ -40,7 +33,7 @@ error_reporting(0);
 <body>
 
 <!-- Start Switcher -->
-<?php include('includes/colorswitcher.php');?>
+
 <!-- /Switcher -->  
         
 <!--Header-->
@@ -64,9 +57,9 @@ error_reporting(0);
 </section>
 <!-- /Banners --> 
 
-
+<!-- 
 <!-- Resent Cat-->
-<section class="section-padding gray-bg">
+<section class="section-padding gray-bg homepage-cards">
   <div class="container">
     <div class="section-header text-center">
       <h2>Find the Best <span>Ticket for you.</span></h2>
@@ -84,7 +77,7 @@ error_reporting(0);
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="resentnewcar">
 
-<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.destination,tblvehicles.priceperticket,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.destination";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -105,8 +98,8 @@ foreach($results as $result)
 </ul>
 </div>
 <div class="car-title-m">
-<h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h6>
-<span class="price">RWF<?php echo htmlentities($result->PricePerDay);?> /Ticket</span> 
+<h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->destination);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h6>
+<span class="price">RWF<?php echo htmlentities($result->priceperticket);?> /Ticket</span> 
 </div>
 <div class="inventory_info_m">
 <p><?php echo substr($result->VehiclesOverview,0,70);?></p>
@@ -188,7 +181,6 @@ foreach($results as $result)
 
 
         <div class="testimonial-m">
-          <div class="testimonial-img"> <img src="assets/images/cat-profile.png" alt="" /> </div>
           <div class="testimonial-content">
             <div class="testimonial-heading">
               <h5><?php echo htmlentities($result->FullName);?></h5>
@@ -234,8 +226,6 @@ foreach($results as $result)
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/interface.js"></script> 
-<!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
 <!--bootstrap-slider-JS--> 
 <script src="assets/js/bootstrap-slider.min.js"></script> 
 <!--Slider-JS--> 

@@ -113,8 +113,8 @@ $msg="Booking Successfully Confirmed";
 										<th>#</th>
 											<th>Name</th>
 											<th>Ticket</th>
-											<th>From </th>
-											<th>To Date</th>
+											<th>Date </th>
+											<th>Time</th>
 											<th>Message</th>
 											<th>Status</th>
 											<th>Posting date</th>
@@ -126,8 +126,8 @@ $msg="Booking Successfully Confirmed";
 										<th>#</th>
 										<th>Name</th>
 											<th>Ticket</th>
-											<th>From</th>
-											<th>To Date</th>
+											<th>Date</th>
+											<th>Time</th>
 											<th>Message</th>
 											<th>Status</th>
 											<th>Posting date</th>
@@ -136,7 +136,7 @@ $msg="Booking Successfully Confirmed";
 									</tfoot>
 									<tbody>
 
-									<?php $sql = "SELECT tblusers.FullName,tblbrands.BrandName,tblvehicles.VehiclesTitle,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,tblbooking.id  from tblbooking join tblvehicles on tblvehicles.id=tblbooking.VehicleId join tblusers on tblusers.EmailId=tblbooking.userEmail join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id  ";
+									<?php $sql = "SELECT tblusers.FullName,tblbrands.destination,tblvehicles.VehiclesTitle,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,tblbooking.id  from tblbooking join tblvehicles on tblvehicles.id=tblbooking.VehicleId join tblusers on tblusers.EmailId=tblbooking.userEmail join tblbrands on tblvehicles.destination=tblbrands.id  ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -148,7 +148,7 @@ foreach($results as $result)
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></td>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->destination);?> , <?php echo htmlentities($result->VehiclesTitle);?></td>
 											<td><?php echo htmlentities($result->FromDate);?></td>
 											<td><?php echo htmlentities($result->ToDate);?></td>
 											<td><?php echo htmlentities($result->message);?></td>

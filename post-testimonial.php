@@ -37,7 +37,7 @@ $error="Something went wrong. Please try again";
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>Car Rental Portal |Post testimonial</title>
+<title>Online ticket booking system |Post testimonial</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -190,8 +190,6 @@ foreach($results as $result)
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/interface.js"></script> 
-<!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
 <!--bootstrap-slider-JS--> 
 <script src="assets/js/bootstrap-slider.min.js"></script> 
 <!--Slider-JS--> 

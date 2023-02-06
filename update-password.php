@@ -107,10 +107,7 @@ return true;
 </head>
 <body>
 
-<!-- Start Switcher -->
-<?php include('includes/colorswitcher.php');?>
-<!-- /Switcher -->  
-        
+       
 <!--Header-->
 <?php include('includes/header.php');?>
 <!-- /Header --> 
@@ -215,8 +212,6 @@ foreach($results as $result)
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/interface.js"></script> 
-<!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
 <!--bootstrap-slider-JS--> 
 <script src="assets/js/bootstrap-slider.min.js"></script> 
 <!--Slider-JS--> 

@@ -126,7 +126,7 @@ foreach($results as $result)
 {				?>	
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->BrandName);?></td>
+											<td><?php echo htmlentities($result->destination);?></td>
 											<td><?php echo htmlentities($result->CreationDate);?></td>
 											<td><?php echo htmlentities($result->UpdationDate);?></td>
 <td><a href="edit-brand.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;

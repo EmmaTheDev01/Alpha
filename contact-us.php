@@ -16,7 +16,7 @@ if (isset($_POST['send'])) {
   $query->execute();
   $lastInsertId = $dbh->lastInsertId();
   if ($lastInsertId) {
-    $msg = "Query Sent. We will contact you shortly";
+    $msg = "Sent. We will contact you shortly";
   } else {
     $error = "Something went wrong. Please try again";
   }
@@ -91,7 +91,7 @@ if (isset($_POST['send'])) {
 <body>
 
   <!-- Start Switcher -->
-  <?php include('includes/colorswitcher.php'); ?>
+
   <!-- /Switcher -->
 
   <!--Header-->
@@ -131,6 +131,7 @@ if (isset($_POST['send'])) {
               <?php echo htmlentities($msg); ?>
               </div>
           <?php } ?>
+
           <div class="contact_form gray-bg">
             <form method="post">
               <div class="form-group">
@@ -157,36 +158,34 @@ if (isset($_POST['send'])) {
           </div>
         </div>
         <div class="col-md-6">
-          <h3>Contact Info</h3>
-          <div class="contact_detail">
+          <div class="contact-detail">
+            <h3>Contact Info</h3>
             <?php
-            $pagetype = $_GET['type'];
             $sql = "SELECT * from tblcontactusinfo";
             $query = $dbh->prepare($sql);
-            $query->bindParam(':pagetype', $pagetype, PDO::PARAM_STR);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_OBJ);
-            $cnt = 1;
+
             if ($query->rowCount() > 0) {
               foreach ($results as $result) { ?>
                 <ul>
-                  <li>
+                <li class="list-contact">
                     <div class="icon_wrap"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
                     <div class="contact_info_m">
                       <?php echo htmlentities($result->Address); ?>
                     </div>
                   </li>
-                  <li>
+                  <li class="list-contact">
                     <div class="icon_wrap"><i class="fa fa-phone" aria-hidden="true"></i></div>
-                    <div class="contact_info_m"><a href="tel:61-1234-567-90">
-                        <?php echo htmlentities($result->EmailId); ?>
-                      </a></div>
+                    <div class="contact_info_m">
+                      <?php echo htmlentities($result->EmailId); ?>
+                    </div>
                   </li>
-                  <li>
+                  <li class="list-contact">
                     <div class="icon_wrap"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
-                    <div class="contact_info_m"><a href="mailto:contact@exampleurl.com">
-                        <?php echo htmlentities($result->ContactNo); ?>
-                      </a></div>
+                    <div class="contact_info_m">
+                      <?php echo htmlentities($result->ContactNo); ?>
+                    </div>
                   </li>
                 </ul>
               <?php }
@@ -224,8 +223,6 @@ if (isset($_POST['send'])) {
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/interface.js"></script>
-  <!--Switcher-->
-  <script src="assets/switcher/js/switcher.js"></script>
   <!--bootstrap-slider-JS-->
   <script src="assets/js/bootstrap-slider.min.js"></script>
   <!--Slider-JS-->

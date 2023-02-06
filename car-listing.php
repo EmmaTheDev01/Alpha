@@ -12,7 +12,7 @@ error_reporting(0);
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>Alpha Express || Car Listing</title>
+<title>Booking, Alpha express online ticket booking system.</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -46,9 +46,6 @@ error_reporting(0);
 </head>
 <body>
 
-<!-- Start Switcher -->
-<?php include('includes/colorswitcher.php');?>
-<!-- /Switcher -->  
 
 <!--Header--> 
 <?php include('includes/header.php');?>
@@ -91,7 +88,7 @@ error_reporting(0);
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="resentnewcar">
 
-<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.destination,tblvehicles.priceperticket,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.destination";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -112,8 +109,8 @@ foreach($results as $result)
 </ul>
 </div>
 <div class="car-title-m">
-<h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h6>
-<span class="price">RWF<?php echo htmlentities($result->PricePerDay);?> /Ticket</span> 
+<h6 class="title-v"><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->destination);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h6>
+<span class="price">RWF<?php echo htmlentities($result->priceperticket);?> /Ticket</span> 
 </div>
 <div class="inventory_info_m">
 <p><?php echo substr($result->VehiclesOverview,0,70);?></p>
@@ -152,8 +149,6 @@ foreach($results as $result)
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/interface.js"></script> 
-<!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
 <!--bootstrap-slider-JS--> 
 <script src="assets/js/bootstrap-slider.min.js"></script> 
 <!--Slider-JS--> 

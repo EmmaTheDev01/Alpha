@@ -49,7 +49,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
         </div>
 
         <div class="col-md-3 col-sm-6">
-          <h6>Subscribe Newsletter</h6>
+          <h6> Our Newsletter</h6>
           <div class="newsletter-form">
             <form method="post">
               <div class="form-group">
@@ -57,7 +57,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
               </div>
               <button type="submit" name="emailsubscibe" class="btn btn-block">Subscribe <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
             </form>
-            <p class="subscribed-text">*We send great deals and best discounts to our subscribed users very week.</p>
+            <p class="subscribed-text">We send updates and best discounts to our subscribed users very week.</p>
           </div>
         </div>
       </div>

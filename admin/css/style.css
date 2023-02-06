@@ -420,6 +420,7 @@ a:hover {
   max-width: 100%;
   vertical-align: middle;
 }
+
 .content-format .fa {
   color: #37a6c4;
   margin-right: 10px;
@@ -468,11 +469,7 @@ a:hover {
   background: none !important;
   padding: 0 !important;
 }
-/*
- * Theme Struck - Harmony - Free responsive Bootstrap admin template by Themestruck.com (http://themestruck.com)
- * Code licensed under the MIT
- * For details, see #
- */
+
 ul,
 li {
   margin: 0;

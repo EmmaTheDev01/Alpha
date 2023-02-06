@@ -58,13 +58,6 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
 <!-- SWITCHER -->
-		<link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" data-default-color="true" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/orange.css" title="orange" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/blue.css" title="blue" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/apple-touch-icon-72-precomposed.png">
@@ -74,10 +67,6 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 </head>
 <body>
 
-<!-- Start Switcher -->
-<?php include('includes/colorswitcher.php');?>
-<!-- /Switcher -->  
-
 <!--Header-->
 <?php include('includes/header.php');?>
 <!-- /Header --> 
@@ -86,7 +75,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 
 <?php 
 $vhid=intval($_GET['vhid']);
-$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid";
+$sql = "SELECT tblvehicles.*,tblbrands.destination,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.destination where tblvehicles.id=:vhid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':vhid',$vhid, PDO::PARAM_STR);
 $query->execute();
@@ -99,8 +88,8 @@ foreach($results as $result)
 $_SESSION['brndid']=$result->bid;  
 ?>  
 
-<section id="listing_img_slider">
-  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+<section class="image-journey">
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive image-on-details" alt="image" width="900" height="560"></div>
   <?php if($result->Vimage5=="")
 {
 
@@ -117,11 +106,11 @@ $_SESSION['brndid']=$result->bid;
   <div class="container">
     <div class="listing_detail_head row">
       <div class="col-md-9">
-        <h2><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></h2>
+        <h2><?php echo htmlentities($result->destination);?> , <?php echo htmlentities($result->VehiclesTitle);?></h2>
       </div>
       <div class="col-md-3">
         <div class="price_info">
-          <p>RWF <?php echo htmlentities($result->PricePerDay);?> </p>Per Ticket
+          <p class="text-success price">RWF <?php echo htmlentities($result->priceperticket);?> </p>Ticket
          
         </div>
       </div>
@@ -152,7 +141,7 @@ $_SESSION['brndid']=$result->bid;
             <ul class="nav nav-tabs gray-bg" role="tablist">
               <li role="presentation" class="active"><a href="#vehicle-overview " aria-controls="vehicle-overview" role="tab" data-toggle="tab">Vehicle Overview </a></li>
           
-              <li role="presentation"><a href="#accessories" aria-controls="accessories" role="tab" data-toggle="tab">Accessories</a></li>
+              
             </ul>
             
             <!-- Tab panes -->
@@ -165,151 +154,7 @@ $_SESSION['brndid']=$result->bid;
               
               
               <!-- Accessories -->
-              <div role="tabpanel" class="tab-pane" id="accessories"> 
-                <!--Accessories-->
-                <table>
-                  <thead>
-                    <tr>
-                      <th colspan="2">Accessories</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Air Conditioner</td>
-<?php if($result->AirConditioner==1)
-{
-?>
-                      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?> 
-   <td><i class="fa fa-close" aria-hidden="true"></i></td>
-   <?php } ?> </tr>
-
-<tr>
-<td>AntiLock Braking System</td>
-<?php if($result->AntiLockBrakingSystem==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else {?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-                    </tr>
-
-<tr>
-<td>Power Steering</td>
-<?php if($result->PowerSteering==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-                   
-
-<tr>
-
-<td>Power Windows</td>
-
-<?php if($result->PowerWindows==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-                   
- <tr>
-<td>CD Player</td>
-<?php if($result->CDPlayer==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-
-<tr>
-<td>Leather Seats</td>
-<?php if($result->LeatherSeats==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-
-<tr>
-<td>Central Locking</td>
-<?php if($result->CentralLocking==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-
-<tr>
-<td>Power Door Locks</td>
-<?php if($result->PowerDoorLocks==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-                    </tr>
-                    <tr>
-<td>Brake Assist</td>
-<?php if($result->BrakeAssist==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php  } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-
-<tr>
-<td>Driver Airbag</td>
-<?php if($result->DriverAirbag==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
- </tr>
- 
- <tr>
- <td>Passenger Airbag</td>
- <?php if($result->PassengerAirbag==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else {?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-
-<tr>
-<td>Crash Sensor</td>
-<?php if($result->CrashSensor==1)
-{
-?>
-<td><i class="fa fa-check" aria-hidden="true"></i></td>
-<?php } else { ?>
-<td><i class="fa fa-close" aria-hidden="true"></i></td>
-<?php } ?>
-</tr>
-
-                  </tbody>
-                </table>
-              </div>
+     
             </div>
           </div>
           
@@ -333,7 +178,7 @@ $_SESSION['brndid']=$result->bid;
               <input type="text" class="form-control" name="fromdate" placeholder="From Date(dd/mm/yyyy)" required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" name="todate" placeholder="To Date(dd/mm/yyyy)" required>
+              <input type="text" class="form-control" name="todate" placeholder="Time" required>
             </div>
             <div class="form-group">
               <textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
@@ -358,11 +203,11 @@ $_SESSION['brndid']=$result->bid;
     
     <!--Similar-Cars-->
     <div class="similar_cars">
-      <h3>Other Destinations</h3>
+      <h3>Other cars in the same destination</h3>
       <div class="row">
 <?php 
 $bid=$_SESSION['brndid'];
-$sql="SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid";
+$sql="SELECT tblvehicles.VehiclesTitle,tblbrands.destination,tblvehicles.priceperticket,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.destination where tblvehicles.destination=:bid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();
@@ -377,13 +222,13 @@ foreach($results as $result)
             <div class="product-listing-img"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image" /> </a>
             </div>
             <div class="product-listing-content">
-              <h5><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h5>
-              <p class="list-price">$<?php echo htmlentities($result->PricePerDay);?></p>
+              <h5><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->destination);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h5>
+              <p class="list-price">RWF <?php echo htmlentities($result->priceperticket);?></p>
           
               <ul class="features_list">
                 
              <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity);?> seats</li>
-                <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo htmlentities($result->ModelYear);?> model</li>
+                <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo htmlentities($result->ModelYear);?></li>
                 <li><i class="fa fa-car" aria-hidden="true"></i><?php echo htmlentities($result->FuelType);?></li>
               </ul>
             </div>
@@ -422,7 +267,6 @@ foreach($results as $result)
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/interface.js"></script> 
-<script src="assets/switcher/js/switcher.js"></script>
 <script src="assets/js/bootstrap-slider.min.js"></script> 
 <script src="assets/js/slick.min.js"></script> 
 <script src="assets/js/owl.carousel.min.js"></script>
